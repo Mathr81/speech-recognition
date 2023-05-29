@@ -8,7 +8,7 @@ let transcription = '';
 
 recognition.onresult = (event) => {
   const results = event.results;
-  const interimTranscription = '';
+  let interimTranscription = '';
 
   for (let i = event.resultIndex; i < results.length; i++) {
     const transcript = results[i][0].transcript;
@@ -20,6 +20,10 @@ recognition.onresult = (event) => {
   }
 
   document.getElementById('transcription').innerHTML = transcription + interimTranscription;
+};
+
+recognition.onend = () => {
+  recognition.start();
 };
 
 recognition.start();
